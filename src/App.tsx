@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import LoginForm,{FormData} from "./components/LoginForm/LoginForm";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import Home from "./components/viewes/Home";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [views, setViews] = useState([true, false, false]);
+
+    const onLoginSubmit = (data: FormData) => {
+        console.log("Login submit",data);
+        //const result = await fetch()
+        setViews([false, false, true]);
+    };
+
+    const onRegistrationSubmit = (data: FormData) => {
+        console.log("Registration submit",data);
+        setViews([false, false, true]);
+    };
+
+    return<>
+        {views[0] && <LoginForm onSubmit={onLoginSubmit}/>}
+        {views[1] && <RegistrationForm onSubmit={onRegistrationSubmit}/>}
+        {views[2] && <Home />}
+    </>;
+
 }
 
 export default App;
