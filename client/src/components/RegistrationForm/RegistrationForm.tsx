@@ -1,17 +1,18 @@
+import React from "react";
 import {FormEvent, useState} from "react";
-import styles from "./LoginForm.module.css";
+import styles from "./RegistrationForm.module.css";
 
-export type FormData = {
+export type RegistrationFormData = {
     login: string;
     password: string;
 }
 
 type FormProps = {
-    onSubmit: (data: FormData) => void;
+    onSubmit: (data: RegistrationFormData) => void;
 }
 
 
-export default function LoginForm({onSubmit}: FormProps){
+export default function RegistrationForm({onSubmit}: FormProps){
 
     const [login, setLogin] = useState("");
     const [loginError, setLoginError] = useState("");
@@ -51,15 +52,14 @@ export default function LoginForm({onSubmit}: FormProps){
                 login,
                 password
             });
-            setLogin("");
-            setPassword("");
         }
     };
 
     return<>
-        <h3>Авторизация</h3>
+
         <form onSubmit={submitHandler}>
-        <label>
+            <h3>Регистрация</h3>
+        <label >
             Логин:
             <input
                 value={login}
@@ -77,7 +77,7 @@ export default function LoginForm({onSubmit}: FormProps){
         </label>
             <br/>
             {passwordError && <div className={styles.error}>{passwordError}</div>}
-        <button type="submit">Отправить</button>
+        <button type="submit">Зарегистрироваться</button>
         </form>
     </>;
 }
